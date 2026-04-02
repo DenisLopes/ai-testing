@@ -1,0 +1,38 @@
+# Segredos e variáveis de ambiente
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Ambientes virtuais
+venv/
+.venv/
+env/
+.env_folder/
+
+# Pytest
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs e relatórios gerados (manter apenas exemplos)
+*.log
+relatoriosjson/*.json
+relatorioshtml/*.html
+evidencias/*.txt
+evidencias/*.json
+
+# IDEs
+.vscode/settings.json
+.idea/
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
