@@ -25,7 +25,7 @@ jobs:
       - name: Rodar testes com pytest
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-        run: python -m pytest testsbasicos/ -v --tb=short
+        run: python -m pytest testsbasicos/ -v --tb=short --html=relatorioshtml/pytest_report.html --self-contained-html
 
       - name: Gerar relatório de evidência
         env:
@@ -38,6 +38,6 @@ jobs:
         with:
           name: relatorios-${{ github.run_number }}
           path: |
-            relatorios/relatorioshtml/
-            relatorios/relatoriosjson/
+            relatorioshtml/
+            relatoriosjson/
             evidencias/
