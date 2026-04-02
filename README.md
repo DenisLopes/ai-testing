@@ -22,11 +22,12 @@ Este projeto demonstra técnicas de QA aplicadas a sistemas de IA, cobrindo:
 ## Estrutura do Projeto
 
 ```
-ai-testing-portfolio/
-├── testsbasicos/          # Testes básicos de qualidade da IA
-├── testsestruturados/     # Testes com cenários complexos
-├── testsregressao/        # Testes de regressão
-├── testsseguranca/        # Testes de segurança e ética
+ai-testing/
+├── tests/
+│   ├── basicos/           # Testes básicos de qualidade da IA
+│   ├── estruturados/      # Testes com cenários complexos
+│   ├── regressao/         # Testes de regressão
+│   └── seguranca/         # Testes de segurança e ética
 ├── utils/
 │   ├── cliente_ia.py      # Cliente de comunicação com a API Groq
 │   ├── avaliador.py       # Motor de avaliação das respostas
@@ -76,13 +77,13 @@ cp .env.example .env
 
 ```bash
 # Todos os testes básicos
-python -m pytest testsbasicos/ -v
+python -m pytest tests/basicos/ -v
 
 # Todos os testes do projeto
-python -m pytest -v
+python -m pytest tests/ -v
 
 # Com relatório HTML do pytest
-python -m pytest testsbasicos/ -v --html=relatorioshtml/pytest_report.html
+python -m pytest tests/ -v --html=relatorioshtml/pytest_report.html
 ```
 
 ---
