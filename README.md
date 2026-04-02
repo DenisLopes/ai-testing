@@ -1,5 +1,7 @@
 # AI Testing
 
+![CI](https://github.com/DenisLopes/ai-testing/actions/workflows/ci.yml/badge.svg)
+
 Os testes automatizados para avaliação de modelos de linguagem (LLMs), com foco em qualidade, segurança e detecção de alucinações.
 
 ## Visão Geral
