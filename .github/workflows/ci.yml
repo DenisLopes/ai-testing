@@ -1,0 +1,43 @@
+name: CI - AI Testing
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Instalar dependências
+        run: pip install -r requirements.txt
+
+      - name: Rodar testes com pytest
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: python -m pytest testsbasicos/ -v --tb=short
+
+      - name: Gerar relatório de evidência
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: python scripts/gerar_relatorio.py
+
+      - name: Upload dos artefatos de relatório
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: relatorios-${{ github.run_number }}
+          path: |
+            relatorios/relatorioshtml/
+            relatorios/relatoriosjson/
+            evidencias/
