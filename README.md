@@ -1,6 +1,6 @@
-# AI Testing Portfolio
+# AI Testing
 
-Portfolio de testes automatizados para avaliação de modelos de linguagem (LLMs), com foco em qualidade, segurança e detecção de alucinações.
+Os testes automatizados para avaliação de modelos de linguagem (LLMs), com foco em qualidade, segurança e detecção de alucinações.
 
 ## Visão Geral
 
@@ -52,8 +52,8 @@ ai-testing-portfolio/
 
 ```bash
 # Clone o repositório
-git clone https://github.com/seu-usuario/ai-testing-portfolio.git
-cd ai-testing-portfolio
+git clone https://github.com/DenisLopes/ai-testing.git
+cd ai-testing
 
 # Crie e ative o ambiente virtual
 python -m venv venv
