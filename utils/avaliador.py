@@ -27,8 +27,11 @@ class Avaliador:
         elif tipo == "exato":
             passou = resposta_norm.strip() == _normalizar(esperado).strip()
         else:  # contem (padrão)
-            esperado_norm = _normalizar(esperado)
-            passou = esperado_norm in resposta_norm or esperado_norm.replace(".", ",") in resposta_norm
+            alternativas = [_normalizar(a.strip()) for a in esperado.split("|")]
+            passou = any(
+                alt in resposta_norm or alt.replace(".", ",") in resposta_norm
+                for alt in alternativas
+            )
 
         return {
             "passou": passou,

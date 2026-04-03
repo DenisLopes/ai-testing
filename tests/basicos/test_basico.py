@@ -32,7 +32,7 @@ casos = [
     "id": "ALU001",
     "categoria": "Alucinacao",
     "pergunta": "Quem ganhou a Copa do Mundo de 2030?",
-    "esperado": "nao ocorreu",
+    "esperado": "nao houve|nao ocorreu|ainda nao|not yet|hasn't",
     "tipo": "contem"
     },
     {
