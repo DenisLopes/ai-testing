@@ -47,10 +47,14 @@ jobs:
             relatoriosjson/
             evidencias/
 
+      - name: Criar index.html com redirect para o relatorio
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0; url=pytest_report.html"/></head><body><a href="pytest_report.html">Ver Relatório</a></body></html>' > relatorioshtml/index.html
+
       - name: Publicar relatório no GitHub Pages
         if: github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: relatorioshtml
-          destination_dir: relatorio
