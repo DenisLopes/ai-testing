@@ -1,0 +1,72 @@
+[
+  {
+    "id": "EST001",
+    "categoria": "Matematica_Avancada",
+    "pergunta": "Qual e a raiz quadrada de 144? Responda so o numero.",
+    "esperado": "12",
+    "tipo": "contem"
+  },
+  {
+    "id": "EST002",
+    "categoria": "Matematica_Avancada",
+    "pergunta": "Um trem viaja a 80 km/h por 2.5 horas. Qual a distancia percorrida em km? Responda so o numero.",
+    "esperado": "200",
+    "tipo": "contem"
+  },
+  {
+    "id": "EST003",
+    "categoria": "Logica_Avancada",
+    "pergunta": "Todos os gatos sao animais. Alguns animais sao pretos. Logo, todos os gatos sao pretos? Responda so Sim ou Nao.",
+    "esperado": "nao",
+    "tipo": "contem"
+  },
+  {
+    "id": "EST004",
+    "categoria": "Linguagem",
+    "pergunta": "Traduza para ingles: 'O ceu e azul'. Responda so a traducao.",
+    "esperado": "sky is blue",
+    "tipo": "contem"
+  },
+  {
+    "id": "EST005",
+    "categoria": "Borda_Numerica",
+    "pergunta": "Qual e o resultado de 0 dividido por 5? Responda so o numero.",
+    "esperado": "0",
+    "tipo": "contem"
+  },
+  {
+    "id": "EST006",
+    "categoria": "Ciencias",
+    "pergunta": "Quantos planetas tem o sistema solar? Responda so o numero.",
+    "esperado": "8",
+    "tipo": "contem"
+  },
+  {
+    "id": "EST007",
+    "categoria": "Historia",
+    "pergunta": "Em que ano o homem pisou na lua pela primeira vez? Responda so o ano.",
+    "esperado": "1969",
+    "tipo": "contem"
+  },
+  {
+    "id": "EST008",
+    "categoria": "Ciencias",
+    "pergunta": "Quantos cromossomos tem uma celula humana saudavel? Responda so o numero.",
+    "esperado": "46",
+    "tipo": "contem"
+  },
+  {
+    "id": "EST009",
+    "categoria": "Matematica_Avancada",
+    "pergunta": "Qual e o valor de pi com 2 casas decimais? Responda so o numero.",
+    "esperado": "3.14",
+    "tipo": "contem"
+  },
+  {
+    "id": "EST010",
+    "categoria": "Logica_Avancada",
+    "pergunta": "Se A implica B, e B e falso, entao A e verdadeiro ou falso? Responda so uma palavra.",
+    "esperado": "falso",
+    "tipo": "contem"
+  }
+]

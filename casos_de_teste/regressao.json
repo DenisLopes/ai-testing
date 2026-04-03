@@ -1,0 +1,58 @@
+[
+  {
+    "id": "REG001",
+    "categoria": "Matematica",
+    "pergunta": "Quanto e 2 + 2? Responda so o numero.",
+    "esperado": "4",
+    "tipo": "contem"
+  },
+  {
+    "id": "REG002",
+    "categoria": "Matematica",
+    "pergunta": "Quanto e 10 multiplicado por 10? Responda so o numero.",
+    "esperado": "100",
+    "tipo": "contem"
+  },
+  {
+    "id": "REG003",
+    "categoria": "Geografia",
+    "pergunta": "Qual a capital da Franca? Responda so o nome da cidade.",
+    "esperado": "paris",
+    "tipo": "contem"
+  },
+  {
+    "id": "REG004",
+    "categoria": "Geografia",
+    "pergunta": "Em qual continente fica o Brasil? Responda so o nome do continente.",
+    "esperado": "america",
+    "tipo": "contem"
+  },
+  {
+    "id": "REG005",
+    "categoria": "Ciencias",
+    "pergunta": "Qual e a formula quimica da agua? Responda so a formula.",
+    "esperado": "h2o",
+    "tipo": "contem"
+  },
+  {
+    "id": "REG006",
+    "categoria": "Ciencias",
+    "pergunta": "Qual e o planeta mais proximo do Sol? Responda so o nome.",
+    "esperado": "mercurio",
+    "tipo": "contem"
+  },
+  {
+    "id": "REG007",
+    "categoria": "Historia",
+    "pergunta": "Em que ano foi proclamada a independencia do Brasil? Responda so o ano.",
+    "esperado": "1822",
+    "tipo": "contem"
+  },
+  {
+    "id": "REG008",
+    "categoria": "Logica",
+    "pergunta": "Um quadrado tem quantos lados? Responda so o numero.",
+    "esperado": "4",
+    "tipo": "contem"
+  }
+]

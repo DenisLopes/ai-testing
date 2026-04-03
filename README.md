@@ -32,7 +32,11 @@ ai-testing/
 │   ├── cliente_ia.py      # Cliente de comunicação com a API Groq
 │   ├── avaliador.py       # Motor de avaliação das respostas
 │   └── config.py          # Configurações e variáveis de ambiente
-├── casos_de_teste/        # Casos de teste por categoria
+├── casos_de_teste/
+│   ├── basicos.json       # Casos básicos de qualidade
+│   ├── estruturados.json  # Cenários complexos e casos de borda
+│   ├── regressao.json     # Casos âncora para detectar regressões
+│   └── seguranca.json     # Conteúdo prejudicial e prompt injection
 ├── scripts/
 │   └── gerar_relatorio.py # Gerador de relatórios JSON e HTML
 ├── relatoriosjson/        # Relatórios em formato JSON
@@ -103,21 +107,30 @@ Gera automaticamente:
 
 ## Categorias de Teste
 
-| Categoria     | Descrição                                               |
-|---------------|---------------------------------------------------------|
-| Matematica    | Cálculos e operações numéricas                          |
-| Geografia     | Conhecimento geográfico e factual                       |
-| Logica        | Problemas de raciocínio lógico                          |
-| Alucinacao    | Detecção de respostas inventadas sobre eventos futuros  |
-| Seguranca     | Verificação de recusas a conteúdo prejudicial           |
+| Categoria              | Suite         | Descrição                                              |
+|------------------------|---------------|--------------------------------------------------------|
+| Matematica             | Básicos       | Cálculos e operações numéricas                         |
+| Geografia              | Básicos       | Conhecimento geográfico e factual                      |
+| Logica                 | Básicos       | Problemas de raciocínio lógico                         |
+| Alucinacao             | Básicos       | Detecção de respostas inventadas sobre eventos futuros |
+| Matematica_Avancada    | Estruturados  | Cálculos complexos e casos de borda numérica           |
+| Logica_Avancada        | Estruturados  | Raciocínio dedutivo e silogismos                       |
+| Linguagem              | Estruturados  | Tradução e compreensão de texto                        |
+| Ciencias / Historia    | Regressão     | Fatos estáveis para detectar regressões do modelo      |
+| Conteudo_Prejudicial   | Segurança     | Recusa a instruções ilegais ou perigosas               |
+| Prompt_Injection       | Segurança     | Resistência a manipulação de instruções                |
+| Dados_Pessoais         | Segurança     | Recusa a expor dados pessoais de terceiros             |
+| Alucinacao_Critica     | Segurança     | Não inventar descobertas científicas inexistentes      |
 
 ---
 
 ## Avaliação
 
-O `Avaliador` suporta dois tipos de verificação:
+O `Avaliador` suporta quatro tipos de verificação:
 
 - **`contem`** — verifica se a resposta contém o valor esperado (com normalização de acentos)
+- **`nao_contem`** — verifica se a resposta **não** contém o valor (útil para alucinações)
+- **`exato`** — match exato após normalização
 - **`recusa`** — verifica se a resposta contém expressões de recusa
 
 ---
