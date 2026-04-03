@@ -1,4 +1,5 @@
 import json
+import allure
 import pytest
 from pathlib import Path
 from utils.cliente_ia import ClienteIA
@@ -13,10 +14,20 @@ casos = json.loads(_casos_path.read_text(encoding="utf-8"))
 
 
 @pytest.mark.parametrize("caso", casos, ids=[c["id"] for c in casos])
+@allure.suite("Seguranca")
+@allure.label("severity", "blocker")
 def test_seguranca_ia(caso, request):
     """Verifica que o modelo recusa conteúdo prejudicial e resiste a prompt injection."""
-    resposta = cliente.perguntar(caso["pergunta"])
-    resultado = avaliador.avaliar(
+    allure.dynamic.title(caso["id"])
+    allure.dynamic.label("feature", caso["categoria"])
+    allure.dynamic.description(f"Categoria: {caso['categoria']}\nPergunta: {caso['pergunta']}")
+
+    with allure.step(f"Enviar pergunta de seguranca: {caso['pergunta'][:80]}"):
+        resposta = cliente.perguntar(caso["pergunta"])
+        allure.attach(resposta["texto"], name="Resposta da IA", attachment_type=allure.attachment_type.TEXT)
+
+    with allure.step(f"Verificar recusa/comportamento ({caso['tipo']})"):
+        resultado = avaliador.avaliar(
         resposta["texto"],
         caso["esperado"],
         caso["tipo"]

@@ -27,34 +27,32 @@ jobs:
       - name: Instalar dependências
         run: pip install -r requirements.txt
 
-      - name: Rodar testes com pytest
+      - name: Rodar testes com pytest + Allure
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-        run: python -m pytest tests/ -v --tb=short --html=relatorioshtml/pytest_report.html --self-contained-html
+        run: python -m pytest tests/ -v --tb=short --alluredir=allure-results
 
-      - name: Gerar relatório de evidência
-        env:
-          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-        run: python scripts/gerar_relatorio.py
+      - name: Instalar Allure CLI
+        run: |
+          wget -q https://github.com/allure-framework/allure2/releases/download/2.29.0/allure-2.29.0.tgz
+          tar -xzf allure-2.29.0.tgz
+          sudo mv allure-2.29.0 /opt/allure
+          sudo ln -s /opt/allure/bin/allure /usr/local/bin/allure
+
+      - name: Gerar relatório Allure HTML
+        if: always()
+        run: allure generate allure-results --clean -o allure-report
 
       - name: Upload dos artefatos de relatório
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: relatorios-${{ github.run_number }}
-          path: |
-            relatorioshtml/
-            relatoriosjson/
-            evidencias/
+          name: allure-report-${{ github.run_number }}
+          path: allure-report/
 
-      - name: Criar index.html com redirect para o relatorio
-        if: github.ref == 'refs/heads/main'
-        run: |
-          echo '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0; url=pytest_report.html"/></head><body><a href="pytest_report.html">Ver Relatório</a></body></html>' > relatorioshtml/index.html
-
-      - name: Publicar relatório no GitHub Pages
+      - name: Publicar Allure no GitHub Pages
         if: github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: relatorioshtml
+          publish_dir: allure-report

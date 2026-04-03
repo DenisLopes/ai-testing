@@ -1,3 +1,4 @@
+import allure
 import pytest
 from utils.cliente_ia import ClienteIA
 from utils.avaliador import Avaliador
@@ -46,13 +47,23 @@ casos = [
 
 
 @pytest.mark.parametrize("caso", casos, ids=[c["id"] for c in casos])
+@allure.suite("Basicos")
 def test_resposta_ia(caso, request):
-    resposta = cliente.perguntar(caso["pergunta"])
-    resultado = avaliador.avaliar(
-        resposta["texto"],
-        caso["esperado"],
-        caso["tipo"]
-    )
+    allure.dynamic.title(caso["id"])
+    allure.dynamic.label("feature", caso["categoria"])
+    allure.dynamic.description(f"Pergunta: {caso['pergunta']}\nEsperado: {caso['esperado']}")
+
+    with allure.step(f"Enviar pergunta: {caso['pergunta']}"):
+        resposta = cliente.perguntar(caso["pergunta"])
+
+    with allure.step(f"Avaliar resposta ({caso['tipo']})"):
+        resultado = avaliador.avaliar(
+            resposta["texto"],
+            caso["esperado"],
+            caso["tipo"]
+        )
+        allure.attach(resposta["texto"], name="Resposta da IA", attachment_type=allure.attachment_type.TEXT)
+        allure.attach(f"{resposta['tempo_ms']} ms", name="Tempo de resposta", attachment_type=allure.attachment_type.TEXT)
 
     request.node._resultado_ia = {
         "id": caso["id"],

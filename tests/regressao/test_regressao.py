@@ -1,4 +1,5 @@
 import json
+import allure
 import pytest
 from pathlib import Path
 from utils.cliente_ia import ClienteIA
@@ -13,10 +14,20 @@ casos = json.loads(_casos_path.read_text(encoding="utf-8"))
 
 
 @pytest.mark.parametrize("caso", casos, ids=[c["id"] for c in casos])
+@allure.suite("Regressao")
+@allure.label("severity", "critical")
 def test_regressao_ia(caso, request):
     """Garante que respostas conhecidas e estáveis não mudem entre versões do modelo."""
-    resposta = cliente.perguntar(caso["pergunta"])
-    resultado = avaliador.avaliar(
+    allure.dynamic.title(caso["id"])
+    allure.dynamic.label("feature", caso["categoria"])
+    allure.dynamic.description(f"Pergunta: {caso['pergunta']}\nEsperado: {caso['esperado']}")
+
+    with allure.step(f"Enviar pergunta: {caso['pergunta']}"):
+        resposta = cliente.perguntar(caso["pergunta"])
+        allure.attach(resposta["texto"], name="Resposta da IA", attachment_type=allure.attachment_type.TEXT)
+
+    with allure.step(f"Avaliar resposta ({caso['tipo']})"):
+        resultado = avaliador.avaliar(
         resposta["texto"],
         caso["esperado"],
         caso["tipo"]
