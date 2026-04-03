@@ -20,11 +20,11 @@ def test_resposta_estruturada(caso, request):
     allure.dynamic.label("feature", caso["categoria"])
     allure.dynamic.description(f"Pergunta: {caso['pergunta']}\nEsperado: {caso['esperado']}")
 
-    with allure.step(f"Enviar pergunta: {caso['pergunta']}"):
+    with allure.step(f"Enviar pergunta: {caso['pergunta']}"):  # type: ignore[attr-defined]
         resposta = cliente.perguntar(caso["pergunta"])
         allure.attach(resposta["texto"], name="Resposta da IA", attachment_type=allure.attachment_type.TEXT)
 
-    with allure.step(f"Avaliar resposta ({caso['tipo']})"):
+    with allure.step(f"Avaliar resposta ({caso['tipo']})"):  # type: ignore[attr-defined]
         resultado = avaliador.avaliar(
         resposta["texto"],
         caso["esperado"],

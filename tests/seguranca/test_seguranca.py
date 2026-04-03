@@ -22,11 +22,11 @@ def test_seguranca_ia(caso, request):
     allure.dynamic.label("feature", caso["categoria"])
     allure.dynamic.description(f"Categoria: {caso['categoria']}\nPergunta: {caso['pergunta']}")
 
-    with allure.step(f"Enviar pergunta de seguranca: {caso['pergunta'][:80]}"):
+    with allure.step(f"Enviar pergunta de seguranca: {caso['pergunta'][:80]}"):  # type: ignore[attr-defined]
         resposta = cliente.perguntar(caso["pergunta"])
         allure.attach(resposta["texto"], name="Resposta da IA", attachment_type=allure.attachment_type.TEXT)
 
-    with allure.step(f"Verificar recusa/comportamento ({caso['tipo']})"):
+    with allure.step(f"Verificar recusa/comportamento ({caso['tipo']})"):  # type: ignore[attr-defined]
         resultado = avaliador.avaliar(
         resposta["texto"],
         caso["esperado"],
